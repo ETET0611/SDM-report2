@@ -1,34 +1,30 @@
 #!/usr/bin/python3
 
-import re
-                
-def calc(A,B):
-        ai=str(A)
-        bi=str(B)
-        p = re.compile('\d+(\.\d+)?')
-        if p.match(ai) or p.match(bi):
-                a=float(ai)
-                b=float(bi)
-                if 0<a and a<b and b<1000:
-                        valid=True
-                else:
-                        valid=False
-        else:
-                valid=False
-                
-        if valid:
-                ans=a*b
-                return ans
-        else:
-                return -1
-        
-                
-def main ():
-	matchstring = ''
-	while matchstring != 'end':
-                A = input ('input A: ')
-                B = input ('input B: ')
-                print ('input A * input B = ', calc(A,B))
+def calc(A, B):
+  
+    if not isinstance(A, int) or not isinstance(B, int):
+        return -1
+   
+    if A < 1 or A > 999 or B < 1 or B > 999:
+        return -1
+  
+    return A * B
+
+def main():
+    while True:
+        s = input("input A (or 'end' to exit): ")
+        if s == "end":
+            break
+        try:
+            A = int(s)
+        except ValueError:
+            A = s  
+        s2 = input("input B: ")
+        try:
+            B = int(s2)
+        except ValueError:
+            B = s2
+        print("input A * input B = ", calc(A, B))
 
 if __name__ == '__main__':
-	main()
+    main()
